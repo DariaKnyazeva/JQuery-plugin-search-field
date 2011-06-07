@@ -1,0 +1,23 @@
+<html>
+<head>
+    <script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>
+    <script type="text/javascript" src="js/my.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/my.css"  /> 
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+             $('#search_input').somePlugin({
+   		  text: 'Search',
+                  position: 'left'
+	     });
+        });
+    </script>
+    
+</head>
+<body>
+    <form method="post">
+        <input type="text" id="search_input"/>
+        <input type="submit" value="submit" name="Submit" onclick="alert('Go');">
+    </form>
+</body>
+</html>
