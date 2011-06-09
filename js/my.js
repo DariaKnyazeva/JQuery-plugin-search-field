@@ -1,3 +1,4 @@
+/*global jQuery: true */
 (function($) {
 
     var alignImage = function(element, options) {
@@ -13,17 +14,15 @@
 
     $.fn.somePlugin = function(options) {
         var defaults = {
-                 inactive_class: 'inactive', // class name for inactive state
-                 active_class: 'active', //class name for active state
-                 text: this.val(), //text for displaying in the field on focus out
-                 image: 'images/search_icon.jpg', // relative path to the background image
-                 position: 'left', // the backround image location: 'left' or 'right'
-                 onSubmit: undefined // function to process 
-	    },	   
+                inactive_class: 'inactive', // class name for inactive state
+                active_class: 'active', //class name for active state
+                text: this.val(), //text for displaying in the field on focus out
+                image: 'images/search_icon.jpg', // relative path to the background image
+                position: 'left', // the backround image location: 'left' or 'right'
+                onSubmit: null // function to process 
+            },	   
             // extend default values with options
-            opts = $.extend(defaults, options);
-            
-            
+            opts = $.extend(defaults, options);            
 
         opts.icon_size = this.height() - 3;
         opts.padding = this.height() + 3;
@@ -35,19 +34,19 @@
 
         this.focus(function() {
             var element = $(this);
-            if(element.val() === opts.text) {
-            //    element.val(''); 
-            }  			
+            if (element.val() === opts.text) {
+                element.val(''); 
+            }
             element.removeClass(opts.inactive_class); 
-       });
+        });
 
-       this.focusout(function() {
+        this.focusout(function() {
             var element = $(this);
-            if(element.val() === '') {
-              //  element.val(opts.text); 			 	
+            if (element.val() === '') {
+                element.val(opts.text);
             }
             element.addClass(opts.inactive_class);
-  	});
+        });
 
         this.keyup(function(e) {
             var element = $(this),
@@ -90,8 +89,7 @@
 		     form.submit();
 		  }                  
              }              
-         });         
-         
+         });          
          
     };	
-})(jQuery); // Call and execute the function immediately passing the jQuery object
+}(jQuery)); 
