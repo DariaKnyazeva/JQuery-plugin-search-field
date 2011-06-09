@@ -12,7 +12,7 @@
         }
     };
 
-    $.fn.somePlugin = function(options) {
+    $.fn.searchable = function(options) {
         var defaults = {
                 inactive_class: 'inactive', // class name for inactive state
                 active_class: 'active', //class name for active state
