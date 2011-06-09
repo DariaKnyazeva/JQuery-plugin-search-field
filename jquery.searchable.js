@@ -17,7 +17,7 @@
                 inactive_class: 'inactive', // class name for inactive state
                 active_class: 'active', //class name for active state
                 text: this.val(), //text for displaying in the field on focus out
-                image: 'images/search_icon.jpg', // relative path to the background image
+                image: '../images/search_icon.jpg', // relative path to the background image
                 position: 'left', // the backround image location: 'left' or 'right'
                 onSubmit: null // function to process 
             },	   
