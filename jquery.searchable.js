@@ -2,8 +2,10 @@
 (function($) {
 
     var alignImage = function(element, options) {
-        element.css('background', 'url(' + options.image + ') no-repeat scroll 2px 2px');
+        element.css('background', '2px 2px');
+        element.css('background-image', 'url(' + options.image + ')');
         element.css('background-size', options.icon_size + 'px');
+        element.css('background-repeat', 'no-repeat');
         if (options.position === 'left') {
             element.css('padding-left', options.padding + 'px');
         } else {
@@ -15,9 +17,8 @@
     $.fn.searchable = function(options) {
         var defaults = {
                 inactive_class: 'inactive', // class name for inactive state
-                active_class: 'active', //class name for active state
                 text: this.val(), //text for displaying in the field on focus out
-                image: '../images/search_icon.jpg', // relative path to the background image
+                image: '../images/search_icon.png', // relative path to the background image
                 position: 'left', // the backround image location: 'left' or 'right'
                 onSubmit: null // function to process 
             },	   
@@ -48,13 +49,14 @@
             element.addClass(opts.inactive_class);
         });
 
-        this.keyup(function(e) {
+        this.keypress(function(event) {
             var element = $(this),
                 form = element.closest('form');                
 
             // if Enter is pressed
-	    if(e.keyCode === 13) {
+	    if(event.keyCode === 13) {
                if (typeof opts.onSubmit === 'function') {
+                    event.preventDefault();
 		    opts.onSubmit();
                 } else {
 		    form.submit();
@@ -62,15 +64,15 @@
 	    }
          });
 
-         this.mousemove(function(e) {
+         this.mousemove(function(event) {
              var element = $(this),
                  leftEdge = element.offset().left + opts.icon_size,
                  rightEdge = element.offset().left + element.width() + opts.padding - opts.icon_size;
 
              element.css('cursor', 'text');
 
-             if ( (opts.position === 'left' && e.pageX < leftEdge) ||
-                  (opts.position !== 'left' && e.pageX > rightEdge)) {
+             if ( (opts.position === 'left' && event.pageX < leftEdge) ||
+                  (opts.position !== 'left' && event.pageX > rightEdge)) {
                      element.css('cursor', 'pointer');                 
              } 
          });
@@ -84,9 +86,10 @@
              if ( (opts.position === 'left' && e.pageX < leftEdge) ||
                   (opts.position !== 'left' && e.pageX > rightEdge)) {
                   if (typeof opts.onSubmit === 'function') {
+                      e.preventDefault();
 		      opts.onSubmit();
 		  } else {
-		     form.submit();
+		      form.submit();
 		  }                  
              }              
          });          

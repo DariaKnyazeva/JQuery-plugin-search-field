@@ -2,26 +2,31 @@
 <head>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
     <script type="text/javascript" src="../jquery.searchable.js"></script>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/base/jquery-ui.css" type="text/css" media="all" />
+
     <style type="text/css">
         .inactive {
-            color: green;
+            background-color:#dddddd !important;
+            color:white;
         }
     </style>
+    
 
     <script type="text/javascript">
         $(document).ready(function() {
-             $('#search_input').searchable({
-   		  text: 'Search',
-                  position: 'left'
-	     });
+            $('#search_input').searchable({
+                text: 'Search',
+                position: 'left',
+                inactive_class: 'inactive'                
+             });
         });
     </script>
     
 </head>
 <body>
     <form method="post">
-        <input type="text" id="search_input"/>
-        <input type="submit" value="submit" name="Submit" onclick="alert('Go');">
+        <input type="text" id="search_input" class="ui-corner-all"/>
+        <input type="submit" value="submit" name="Submit" onclick="alert('Go!');">
     </form>
 </body>
 </html>
